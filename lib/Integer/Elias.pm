@@ -26,7 +26,7 @@ sub finish {
 
 sub putc {
     my ($self, $c) = @_;
-    $self->binary = join '', $self->binary, chr( $c & 0xff );
+    $self->binary = join '', $self->binary, pack('C', $c);
 }
 
 sub getc {
