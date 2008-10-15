@@ -1,40 +1,50 @@
-Integer-Elias version 0.01
-==========================
+NAME
+    Integer::Elias - Elias coder
 
-The README is used to introduce the module and provide instructions on
-how to install the module, any machine dependencies it may have (for
-example C compilers and installed libraries) and any other information
-that should be provided before the module is installed.
+SYNOPSIS
+      use Integer::Elias::Encoder;
+      use Integer::Elias::Decoder;
 
-A README file is required for CPAN modules since CPAN extracts the
-README file from a module distribution so that people browsing the
-archive can use it get an idea of the modules uses. It is usually a
-good idea to provide version information here so that people can
-decide whether fixes for the module are worth downloading.
+      ## Gamma code
+      my $encoder = Integer::Elias::Encoder->new;
+      $encoder->gamma_encode(0); ## this module can encode 0
+      $encoder->gamma_encode(5);
+      $encoder->gamma_encode(10);
+      $encoder->finish;
 
-INSTALLATION
+      say $encoder->as_string;
 
-To install this module type the following:
+      my $decoder = Integer::Elias::Decoder->new( $encoder->binary );
+      $decoder->gamma_decode; # 0
+      $decoder->gamma_decode; # 5
+      $decoder->gamma_decode; # 10
 
-   perl Makefile.PL
-   make
-   make test
-   make install
+      ## Delta code
+      $encoder = Integer::Elias::Encoder->new;
+      $encoder->delta_encode(10);
+      ...
+      $encoder->finish;
 
-DEPENDENCIES
+      say $encoder->as_string;
 
-This module requires these other modules and libraries:
+      $decoder = Integer::Elias::Decoder->new( $encoder->binary );
+      $decoder->delta_decode;
+      ...
 
-  blah blah blah
+DESCRIPTION
+    Elias gamma/delta code is a universal code encoding positive integers.
 
-COPYRIGHT AND LICENCE
+SEE ALSO
+    <http://en.wikipedia.org/wiki/Universal_code_(data_compression)>
+    <http://www.geocities.jp/m_hiroi/light/pyalgo30.html>
 
-Put the correct copyright and licence information here.
+AUTHOR
+    Naoya Ito, <naoya at bloghackers.net>
 
-Copyright (C) 2008 by A. U. Thor
+COPYRIGHT AND LICENSE
+    Copyright (C) 2008 by Naoya Ito
 
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself, either Perl version 5.8.8 or,
-at your option, any later version of Perl 5 you may have available.
-
+    This library is free software; you can redistribute it and/or modify it
+    under the same terms as Perl itself, either Perl version 5.8.8 or, at
+    your option, any later version of Perl 5 you may have available.
 
