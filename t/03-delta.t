@@ -9,6 +9,7 @@ my $encoder = Integer::Elias::Encoder->new;
 
 $encoder->delta_encode(0);
 $encoder->delta_encode(5);
+$encoder->delta_encode(30000000);
 $encoder->delta_encode(10);
 $encoder->delta_encode(256);
 $encoder->finish;
@@ -17,6 +18,7 @@ my $decoder = Integer::Elias::Decoder->new( $encoder->binary );
 
 is $decoder->delta_decode, 0;
 is $decoder->delta_decode, 5;
+is $decoder->delta_decode, 30000000;
 is $decoder->delta_decode, 10;
 is $decoder->delta_decode, 256;
 is $decoder->delta_decode, undef;

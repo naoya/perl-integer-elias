@@ -9,6 +9,7 @@ my $encoder = Integer::Elias::Encoder->new;
 
 $encoder->gamma_encode(0);
 $encoder->gamma_encode(5);
+$encoder->gamma_encode(30000000);
 $encoder->gamma_encode(10);
 $encoder->gamma_encode(256);
 $encoder->finish;
@@ -17,6 +18,7 @@ my $decoder = Integer::Elias::Decoder->new( $encoder->binary );
 
 is $decoder->gamma_decode, 0;
 is $decoder->gamma_decode, 5;
+is $decoder->gamma_decode, 30000000;
 is $decoder->gamma_decode, 10;
 is $decoder->gamma_decode, 256;
 is $decoder->gamma_decode, undef;
